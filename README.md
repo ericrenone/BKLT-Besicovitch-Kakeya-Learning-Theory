@@ -71,7 +71,7 @@ The gradient direction field $\{\hat{g}(t) := \nabla\mathcal{L}(\theta_t)/\|\nab
 | Bourgain: Kakeya ↔ arithmetic combinatorics | Gradient ↔ Farey arithmetic | Katz–Tao–Bourgain bridge |
 | Three-distance theorem (Sós) | Farey depth $q^*(t)$ equidistribution | $q^*$ spacing $\sim 1/q^*$ |
 | Almost periodic functions (Besicovitch 1926) | Farey oscillation of $\rho_t = C_\alpha(t)$ | Almost periodic gradient signal |
-| Besicovitch space $B^p$ | Gradient distribution space | $B^p = \overline{\{$trig. polynomials$\}}^{\|\cdot\|_{B^p}}$ |
+| Besicovitch space $B^p$ | Gradient distribution space | $B^p = \overline{\{\text{trig. poly.}\}}^{\,\|\cdot\|_{B^p}}$ |
 | Hausdorff–Besicovitch dimension | Effective parameter dimension | $\dim_H(\mathcal{K}_\Theta)$ |
 | Kovner–Besicovitch central symmetry | Symmetry of loss landscape basin | $\mu_\mathrm{KB}(\mathcal{B})$ [BK-D2] |
 | Sphericon (SMLD) corners ↔ Kakeya needle turns | Farey Backtrack ↔ needle direction reversal | Corner = 90° turn |
@@ -111,7 +111,7 @@ The gradient direction field $\{\hat{g}(t) := \nabla\mathcal{L}(\theta_t)/\|\nab
 
 Let $N \geq 1$ be fixed. A **unit needle** in $\mathbb{R}^n$ is a closed line segment of length 1 in a given direction $e \in S^{n-1}$. A **Kakeya set** (or Besicovitch set) in $\mathbb{R}^n$ is a compact set $\mathcal{K} \subset \mathbb{R}^n$ containing, for every direction $e \in S^{n-1}$, a translate of the unit segment in direction $e$:
 
-$$\forall\, e \in S^{n-1},\; \exists\, x_e \in \mathbb{R}^n:\quad [x_e, x_e + e] \subset \mathcal{K}$$
+$$\forall\, e \in S^{n-1},\quad \exists\, x_e \in \mathbb{R}^n:\quad [x_e,\, x_e + e] \subset \mathcal{K}$$
 
 A **Kakeya needle set** strengthens this: the needle can be rotated continuously through 360° while remaining within $\mathcal{K}$.
 
@@ -127,11 +127,11 @@ $$\hat{g}(t) := \frac{\nabla\mathcal{L}(\theta_t)}{\|\nabla\mathcal{L}(\theta_t)
 
 The **gradient direction coverage set** over a training run $[0,T]$ is:
 
-$$\mathcal{K}_\Theta := \left\{ [\theta_t, \theta_t + \hat{g}(t)] : t \in [0,T] \right\} \cup \left\{ \theta_t : t \in [0,T] \right\}$$
+$$\mathcal{K}_\Theta := \bigl\{ [\theta_t,\, \theta_t + \hat{g}(t)] : t \in [0,T] \bigr\} \cup \bigl\{ \theta_t : t \in [0,T] \bigr\}$$
 
 This is the set traced by all unit-length gradient needles placed along the parameter trajectory. It is a Kakeya set in $\mathbb{R}^N$ if and only if:
 
-$$\forall\, e \in S^{N-1},\; \exists\, t_e \in [0,T]: \hat{g}(t_e) = e$$
+$$\forall\, e \in S^{N-1},\quad \exists\, t_e \in [0,T]:\quad \hat{g}(t_e) = e$$
 
 **Definition BK-D1 (Complete Generalization):** *A training run $\theta: [0,T] \to \mathbb{R}^N$ achieves complete generalization if and only if its gradient direction coverage set $\mathcal{K}_\Theta$ is a Kakeya set in $\mathbb{R}^N$ — i.e., the gradient direction explores the full unit sphere $S^{N-1}$.*
 
@@ -303,15 +303,15 @@ $$\dim_H(\mathcal{K}_\Theta) = N$$
 
 The Wang–Zahl proof uses the bound: for a union of convex sets $\bigcup_i K_i$ in $\mathbb{R}^3$,
 
-$$\mathrm{Vol}\!\left(\bigcup_i K_i\right) \geq C \cdot \left(\sum_i \mathrm{Vol}(K_i)^{1/3}\right)^3$$
+$$\mathrm{Vol}\!\Bigl(\bigcup_i K_i\Bigr) \geq C \cdot \Bigl(\sum_i \mathrm{Vol}(K_i)^{1/3}\Bigr)^3$$
 
 In the learning correspondence, each $K_i$ is the **parameter basin** of a single feature direction — the region of parameter space that produces gradient direction $\hat{g} \approx e_i$. The Wang–Zahl volume estimate then becomes a bound on the total basin coverage:
 
-$$\mathrm{Vol}(\text{total generalization basin}) \geq C \cdot \left(\sum_i \mathrm{Vol}(\text{basin}_i)^{1/3}\right)^3$$
+$$\mathrm{Vol}(\text{total generalization basin}) \geq C \cdot \Bigl(\sum_i \mathrm{Vol}(\text{basin}_i)^{1/3}\Bigr)^3$$
 
 This is structurally identical to the PAC-Bayes bound:
 
-$$\mathcal{G} \leq \sqrt{\frac{D_{\mathrm{KL}}(Q\|P) + \ln(2T/\delta)}{2T}}$$
+$$\mathcal{G} \leq \sqrt{\frac{D_{\mathrm{KL}}(Q\,\|\,P) + \ln(2T/\delta)}{2T}}$$
 
 where the KL divergence replaces the volume ratio and the sum over basins becomes the sum of KL contributions. The Wang–Zahl geometric technique and the PAC-Bayes statistical technique are coordinate charts on the same underlying volume estimate.
 
@@ -331,7 +331,7 @@ where $T^{a,e}_\delta$ is the cylinder of length 1, radius $\delta$, centered at
 
 In the learning correspondence, define the **gradient direction density** at resolution $\delta$ and direction $e$:
 
-$$\mathcal{M}_\delta(\hat{g})(e) := \sup_{t_0} \frac{1}{|\{t \in [t_0, t_0+1] : \|\hat{g}(t) - e\| < \delta\}|} \int_{\|\hat{g}(t)-e\|<\delta} \|\nabla\mathcal{L}(\theta_t)\|\,dt$$
+$$\mathcal{M}_\delta(\hat{g})(e) := \sup_{t_0} \frac{1}{\bigl|\bigl\{t \in [t_0, t_0+1] : \|\hat{g}(t) - e\| < \delta\bigr\}\bigr|} \int_{\|\hat{g}(t)-e\| < \delta} \|\nabla\mathcal{L}(\theta_t)\|\,dt$$
 
 This measures how densely the gradient direction visits a neighborhood of direction $e$ during training. The Kakeya maximal function conjecture predicts:
 
@@ -391,13 +391,13 @@ In LKTL, the Farey sequence provides the arithmetic backbone of the spectral gap
 
 **Theorem BK-T4 (Farey–Kakeya Bridge):** *The Farey discrepancy $D_N := \sum_{k=1}^N |\rho_k - k/N|$ satisfies:*
 
-$$D_N \sim N^{1/2+\varepsilon} \quad \Leftrightarrow \quad \dim_H(\mathcal{K}_\Theta) = N$$
+$$D_N \sim N^{1/2+\varepsilon} \;\Longleftrightarrow\; \dim_H(\mathcal{K}_\Theta) = N$$
 
 *where the left side is the Franel–Landau criterion (LKTL §X) and the right side is the Kakeya full-dimension condition (BK-C1).*
 
 The chain of equivalences in the Master Equivalence is now extended:
 
-$$\lambda_1 > 0 \;\Leftrightarrow\; C_\alpha > 1 \;\Leftrightarrow\; D_N \sim N^{1/2+\varepsilon} \;\Leftrightarrow\; \dim_H(\mathcal{K}_\Theta) = N$$
+$$\lambda_1 > 0 \;\Longleftrightarrow\; C_\alpha > 1 \;\Longleftrightarrow\; D_N \sim N^{1/2+\varepsilon} \;\Longleftrightarrow\; \dim_H(\mathcal{K}_\Theta) = N$$
 
 All four conditions are equivalent statements of generalization, now connected through spectral theory (Bridge I), thin-film scaling (Bridge II), Farey arithmetic (PPMC), and Kakeya geometry (Bridge VII).
 
@@ -423,7 +423,7 @@ $$f(t) = \lim_{n \to \infty} \sum_{k=1}^{n} a_k e^{i\lambda_k t}$$
 
 where the $\lambda_k \in \mathbb{R}$ need not be rationally related (unlike periodic functions), the seminorm is:
 
-$$\|f\|_{B^p} := \limsup_{T \to \infty} \left(\frac{1}{2T}\int_{-T}^T |f(t)|^p\,dt\right)^{1/p}$$
+$$\|f\|_{B^p} := \limsup_{T \to \infty} \Biggl(\frac{1}{2T}\int_{-T}^T |f(t)|^p\,dt\Biggr)^{1/p}$$
 
 The **Besicovitch space** $B^p$ is the completion of trigonometric polynomials under $\|\cdot\|_{B^p}$.
 
@@ -453,7 +453,7 @@ This is not metaphor. The spectral theory of Besicovitch almost periodic functio
 
 Besicovitch (1929) introduced and studied **fractal dimension** of sets — what is now called the Hausdorff–Besicovitch dimension. For a Kakeya set $\mathcal{K}$:
 
-$$\dim_H(\mathcal{K}) = \inf\left\{s \geq 0 : \mathcal{H}^s(\mathcal{K}) = 0\right\} = \sup\left\{s \geq 0 : \mathcal{H}^s(\mathcal{K}) = \infty\right\}$$
+$$\dim_H(\mathcal{K}) = \inf\bigl\{s \geq 0 : \mathcal{H}^s(\mathcal{K}) = 0\bigr\} = \sup\bigl\{s \geq 0 : \mathcal{H}^s(\mathcal{K}) = \infty\bigr\}$$
 
 where $\mathcal{H}^s$ is the $s$-dimensional Hausdorff measure. For a Kakeya set in $\mathbb{R}^n$: the conjecture $\dim_H = n$ says the set is "as large as possible" in the dimension sense, despite potentially having measure zero.
 
@@ -461,7 +461,7 @@ where $\mathcal{H}^s$ is the $s$-dimensional Hausdorff measure. For a Kakeya set
 
 The **effective rank** of the gradient covariance $\Sigma_g$ is:
 
-$$\mathrm{rank}_\mathrm{eff}(\Sigma_g) := \frac{(\mathrm{Tr}\,\Sigma_g)^2}{\mathrm{Tr}(\Sigma_g^2)} = \frac{\left(\sum_i \sigma_i\right)^2}{\sum_i \sigma_i^2}$$
+$$\mathrm{rank}_\mathrm{eff}(\Sigma_g) := \frac{\bigl(\mathrm{Tr}\,\Sigma_g\bigr)^2}{\mathrm{Tr}(\Sigma_g^2)} = \frac{\Bigl(\sum_i \sigma_i\Bigr)^2}{\sum_i \sigma_i^2}$$
 
 **Theorem BK-T6 (Dimension–Rank Correspondence):** *The Hausdorff dimension of the gradient direction coverage set $\mathcal{K}_\Theta$ satisfies:*
 
@@ -500,17 +500,17 @@ The **Kovner–Besicovitch measure** $\mu_\mathrm{KB}(K)$ of a convex body $K \s
 
 ### XII.2 Basin Symmetry in Learning
 
-**Definition BK-D2 (Basin Kovner–Besicovitch Measure):** *The Kovner–Besicovitch measure of a loss basin $\mathcal{B}_* = \{\theta : \mathcal{L}(\theta) < \mathcal{L}^* + \varepsilon\}$ is:*
+**Definition BK-D2 (Basin Kovner–Besicovitch Measure):** *The Kovner–Besicovitch measure of a loss basin $\mathcal{B}_{\ast} = \{\theta : \mathcal{L}(\theta) < \mathcal{L}^{\ast} + \varepsilon\}$ is:*
 
-$$\mu_\mathrm{KB}(\mathcal{B}_*) := \frac{\mathrm{Vol}(\text{largest centrally symmetric sub-basin})}{\mathrm{Vol}(\mathcal{B}_*)}$$
+$$\mu_\mathrm{KB}(\mathcal{B}_{\ast}) := \frac{\mathrm{Vol}(\text{largest centrally symmetric sub-basin})}{\mathrm{Vol}(\mathcal{B}_{\ast})}$$
 
 A high Kovner–Besicovitch measure ($\mu_\mathrm{KB} \to 1$) means the loss basin is nearly symmetric — the network's learned representation has high symmetry and is therefore more robust. A low $\mu_\mathrm{KB}$ (approaching $2/3$) indicates an asymmetric, triangular basin — sharp in some directions, indicating memorization.
 
-**Conjecture BK-C8 (Basin Symmetry at Convergence):** *At the grokking transition $t^*$:*
+**Conjecture BK-C8 (Basin Symmetry at Convergence):** *At the grokking transition $t^{\ast}$:*
 
-$$\mu_\mathrm{KB}(\mathcal{B}_*) \xrightarrow{t \to t^*} 1 - O(1/q^*(t^*))$$
+$$\mu_\mathrm{KB}(\mathcal{B}_{\ast}) \;\xrightarrow{t \to t^{\ast}}\; 1 - O\!\bigl(1/q^*(t^{\ast})\bigr)$$
 
-*The basin becomes approximately centrally symmetric as $q^* \to 1$, with residual asymmetry $\sim 1/q^*$.*
+*The basin becomes approximately centrally symmetric as $q^{\ast} \to 1$, with residual asymmetry $\sim 1/q^{\ast}$.*
 
 ---
 
@@ -571,7 +571,7 @@ BKLT adds the seventeenth language to the Master Equivalence.
 | XI | Landau damping | $\|\rho_t - \rho_\infty\| \leq Ce^{-\lambda_1 t}$ | LKTL |
 | XII | LLD film | $h_0 \sim \mathrm{Ca}^{2/3}$ | LKTL |
 | XIII | Oloid development | Total surface development $\lambda_1 > 0$ | ROLD |
-| XIV | Schatz inversion | MMP flip: $\Delta_n(t^*) = 0$ | ROLD |
+| XIV | Schatz inversion | MMP flip: $\Delta_n(t^{\ast}) = 0$ | ROLD |
 | XV | Oloid rolling | Contact line constant $C_P = 1/\lambda_1$ | ROLD |
 | XVI | Sphericon meander | $A_m(t) \searrow 0$ | SMLD |
 | **XVII** | **Kakeya coverage** | **$\dim_H(\mathcal{K}_\Theta) = N$** | **BKLT** |
@@ -595,7 +595,7 @@ The gradient direction coverage set achieves full Hausdorff dimension if and onl
 | BK-C5 | $(N,k)$-Feature Hierarchy: optimal depth for $(N,k)$-coverage is $k\log_2 N$ | Perron tree argument needs formalization | Induction on Besicovitch construction depth |
 | BK-C6 | Gradient as Extractor: $\hat{g}(t)$ is randomness extractor iff $C_\alpha > 1$ | Extractability ↔ signal dominance requires formal proof | Dvir-style algebraic argument |
 | BK-C7 | Gradient Arithmetic Structure: small doubling $|q^* + q^*| \leq C|q^*|^{1+\varepsilon}$ | Farey sequence doubling not fully characterized | Freiman's theorem for Stern–Brocot trees |
-| BK-C8 | Basin Symmetry: $\mu_\mathrm{KB}(\mathcal{B}_*) \to 1 - O(1/q^*(t^*))$ at grokking | Kovner–Besicovitch measure not yet computed for loss basins | Empirical: compute $\mu_\mathrm{KB}$ from Hessian eigenstructure |
+| BK-C8 | Basin Symmetry: $\mu_\mathrm{KB}(\mathcal{B}_{\ast}) \to 1 - O(1/q^{\ast}(t^{\ast}))$ at grokking | Kovner–Besicovitch measure not yet computed for loss basins | Empirical: compute $\mu_\mathrm{KB}$ from Hessian eigenstructure |
 | BK-C9 | Perron Depth Law: effective rank $\sim N/n$ for depth-$n$ networks | Requires controlled experiments across depth | Systematic rank measurements vs. depth |
 | BK-C10 | Besicovitch $B^2$ Convergence: $\|C_\alpha - 1\|_{B^2} \to 0$ ↔ grokking | Besicovitch norm not yet defined for discrete training signals | Define discrete $B^2$ via Farey spectral decomposition |
 
